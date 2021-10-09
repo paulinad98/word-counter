@@ -1,24 +1,45 @@
-html, body {
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: gold;
 }
 
 body {
-    font-size: 50px;
-    font-family: 'Dosis', sans-serif;
+  font-size: 50px;
+  font-family: "Dosis", sans-serif;
+}
+
+nav {
+  text-align: center;
 }
 
 .container {
-    height: 100vh;
-    background-color: gold;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 0.3em 0.5em;
+  border-radius: 3em;
+  margin: 0.7em 0.5em 0;
+  background-color: whitesmoke;
+}
+
+button:hover {
+  background-color: rgba(255, 217, 0, 0.6);
+  opacity: 0.9;
 }
 
 textarea {
-    height: 60%;
-    width: 80%;
+  height: 60%;
+  width: 80%;
 }
 
+p {
+  padding: 0 0.5em;
+  text-align: center;
+}
