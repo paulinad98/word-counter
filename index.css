@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 50px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.container {
+    height: 100vh;
+    background-color: gold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+textarea {
+    height: 60%;
+    width: 80%;
+}
+
