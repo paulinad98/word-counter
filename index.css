@@ -12,28 +12,34 @@ body {
 
 nav {
   text-align: center;
+  margin-top: 0.2em;
+  font-size: 0.8em;
 }
 
 .container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.timer {
+  align-self: flex-start;
+  margin: 0.5em 0 0 1.6em;
+  padding: 0;
+  font-size: 2.4rem;
+  color: #ff0051;
 }
 
 .off {
   display: none;
 }
 
-.timer {
-  display: block;
-}
-
 button {
+  font-size: 0.8em;
   padding: 0.3em 0.5em;
   border-radius: 3em;
-  margin: 0.7em 0.5em 0;
+  margin: 0.5em 0.5em;
   background-color: whitesmoke;
 }
 
@@ -47,7 +53,12 @@ textarea {
   width: 80%;
 }
 
-p {
+.cat-fact {
   padding: 0 0.5em;
   text-align: center;
+  margin-top: 0.3em;
+}
+
+.word-count {
+  margin: 0.5em 0 0;
 }

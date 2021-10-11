@@ -1,21 +1,49 @@
 const textArea = document.getElementById("txtid");
 const wordCount = document.getElementById("count");
 const textDisplay = document.getElementById("text");
+const wordCounterBtn = document.getElementById("word-counter-mode");
+const wordGameBtn = document.getElementById("game-mode");
+const timerDisplay = document.querySelector(".timer");
+const timeDisplay = document.getElementById("time");
+const wordCountDisplay = document.querySelector(".word-count");
+const startBtn = document.getElementById("start-btn");
+
 let len = 0;
-let time = 0;
+let time;
 
 textArea.addEventListener("keyup", () => {
-  wordCount;
+  wordsCount();
 });
 
 textArea.addEventListener("paste", () => {
-  wordCount;
+  wordsCount();
+});
+
+wordCounterBtn.addEventListener("click", () => {
+  wordCounterBtn.disabled = true;
+  wordGameBtn.disabled = false;
+});
+
+wordGameBtn.addEventListener("click", () => {
+  wordCounterBtn.disabled = false;
+  wordGameBtn.disabled = true;
+  wordCountDisplay.classList.add("off");
+  timerDisplay.classList.remove("off");
+  startBtn.classList.remove("off");
+  textDisplay.classList.remove("off");
+});
+
+startBtn.addEventListener("click", () => {
+  giveFact();
+  textArea.focus();
+  setTime();
 });
 
 const giveFact = () => {
   fetch("https://catfact.ninja/fact")
     .then((response) => response.json())
     .then((data) => {
+      textDisplay.textContent = "Loading...";
       if (data.length > 100 || data.length < 65) {
         giveFact();
       } else {
@@ -28,8 +56,6 @@ const giveFact = () => {
     });
 };
 
-giveFact();
-
 const wordsCount = () => {
   let numberOfWords = 0;
   textArea.value.split(" ").forEach((element) => {
@@ -39,5 +65,9 @@ const wordsCount = () => {
 };
 
 const setTime = () => {
-  setInterval((time += 1), 1000);
+  time = 0;
+  setInterval(() => {
+    time += 1;
+    timeDisplay.textContent = time;
+  }, 1000);
 };
