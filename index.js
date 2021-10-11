@@ -2,13 +2,14 @@ const textArea = document.getElementById("txtid");
 const wordCount = document.getElementById("count");
 const textDisplay = document.getElementById("text");
 let len = 0;
+let time = 0;
 
 textArea.addEventListener("keyup", () => {
-  let numberOfWords = 0;
-  textArea.value.split(" ").forEach((element) => {
-    element !== "" ? numberOfWords++ : null;
-  });
-  wordCount.textContent = numberOfWords;
+  wordCount;
+});
+
+textArea.addEventListener("paste", () => {
+  wordCount;
 });
 
 const giveFact = () => {
@@ -28,3 +29,15 @@ const giveFact = () => {
 };
 
 giveFact();
+
+const wordsCount = () => {
+  let numberOfWords = 0;
+  textArea.value.split(" ").forEach((element) => {
+    element !== "" ? numberOfWords++ : null;
+  });
+  wordCount.textContent = numberOfWords;
+};
+
+const setTime = () => {
+  setInterval((time += 1), 1000);
+};
