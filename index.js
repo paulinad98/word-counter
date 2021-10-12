@@ -7,7 +7,7 @@ const timerDisplay = document.querySelector(".timer");
 const timeDisplay = document.getElementById("time");
 const wordCountDisplay = document.querySelector(".word-count");
 const startBtn = document.getElementById("start-btn");
-var catText;
+let catText, t;
 
 let len = 0;
 let time;
@@ -36,7 +36,9 @@ wordGameBtn.addEventListener("click", () => {
   textDisplay.classList.remove("off");
   textAreaGame();
   startBtn.addEventListener("click", () => {
+    t ? clearInterval(t) : null;
     startGame();
+    t = gaming();
   });
 });
 
@@ -47,7 +49,6 @@ const giveFact = () => {
       textDisplay.textContent = "Loading...";
       textDisplay.textContent = data.fact;
       catText = data.fact;
-      gaming();
     })
     .catch((err) => {
       console.error(err);
@@ -64,7 +65,7 @@ const wordsCount = () => {
 
 const setTime = () => {
   time = 0;
-  setInterval(() => {
+  return setInterval(() => {
     time += 1;
     timeDisplay.textContent = time;
   }, 1000);
@@ -112,12 +113,16 @@ const ifInputIsGood = ([word, text]) => {
 function gaming() {
   textArea.value = "";
   textArea.focus();
-  setTime();
-  console.log(catText);
+  const t = setTime();
   textArea.addEventListener("keyup", () => {
     const [goodText, badText] = ifInputIsGood([textArea.value, catText]);
     textDisplay.innerHTML = `<span class="good">${goodText}</span>${badText}`;
+    if (!badText) {
+      clearInterval(t);
+      alert(`You win, your time: ${time}s`);
+    }
   });
+  return t;
 }
 
 textAreaCount();
