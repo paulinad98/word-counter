@@ -7,10 +7,10 @@ const timerDisplay = document.querySelector(".timer");
 const timeDisplay = document.getElementById("time");
 const wordCountDisplay = document.querySelector(".word-count");
 const startBtn = document.getElementById("start-btn");
-let catText, t;
+const resetBtn = document.getElementById("reset-btn");
 
+let catText, t, time;
 let len = 0;
-let time;
 
 wordCounterBtn.addEventListener("click", () => {
   wordCounterBtn.disabled = true;
@@ -19,6 +19,7 @@ wordCounterBtn.addEventListener("click", () => {
   timerDisplay.classList.add("off");
   startBtn.classList.add("off");
   textDisplay.classList.add("off");
+  resetBtn.classList.remove("off");
 
   startBtn.removeEventListener("click", () => {
     startGame();
@@ -34,6 +35,9 @@ wordGameBtn.addEventListener("click", () => {
   timerDisplay.classList.remove("off");
   startBtn.classList.remove("off");
   textDisplay.classList.remove("off");
+  resetBtn.classList.add("off");
+  timeDisplay.textContent = "0";
+  t ? clearInterval(t) : null;
   textAreaGame();
   startBtn.addEventListener("click", () => {
     t ? clearInterval(t) : null;
@@ -79,6 +83,10 @@ const textAreaCount = () => {
   textArea.addEventListener("paste", () => {
     wordsCount();
   });
+
+  resetBtn.addEventListener("click", () => {
+    textArea.value = "";
+  });
 };
 
 const textAreaGame = () => {
@@ -88,6 +96,10 @@ const textAreaGame = () => {
 
   textArea.removeEventListener("paste", () => {
     wordsCount();
+  });
+
+  resetBtn.removeEventListener("click", () => {
+    textArea.value = "";
   });
 };
 
@@ -120,6 +132,7 @@ function gaming() {
     if (!badText) {
       clearInterval(t);
       alert(`You win, your time: ${time}s`);
+      text = "You win! :)";
     }
   });
   return t;
