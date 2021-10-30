@@ -8,6 +8,7 @@ const timeDisplay = document.getElementById("time");
 const wordCountDisplay = document.querySelector(".word-count");
 const startBtn = document.getElementById("start-btn");
 const resetBtn = document.getElementById("reset-btn");
+const cat = document.querySelector(".cat");
 
 let catText, t, time;
 let len = 0;
@@ -16,6 +17,7 @@ wordCounterBtn.addEventListener("click", () => {
   wordCounterBtn.disabled = true;
   wordGameBtn.disabled = false;
   wordCountDisplay.classList.remove("off");
+  cat.classList.add("off");
   timerDisplay.classList.add("off");
   startBtn.classList.add("off");
   textDisplay.classList.add("off");
@@ -35,6 +37,7 @@ wordGameBtn.addEventListener("click", () => {
   timerDisplay.classList.remove("off");
   startBtn.classList.remove("off");
   textDisplay.classList.remove("off");
+  cat.classList.remove("off");
   resetBtn.classList.add("off");
   timeDisplay.textContent = "0";
   t ? clearInterval(t) : null;
@@ -110,7 +113,6 @@ const startGame = () => {
 const ifInputIsGood = ([word, text]) => {
   let good = "";
   let bad = "";
-  console.log(text);
   for (let i = 0; i < text.length; i++) {
     if (word[i] === text[i]) {
       good += word[i];
@@ -131,8 +133,8 @@ function gaming() {
     textDisplay.innerHTML = `<span class="good">${goodText}</span>${badText}`;
     if (!badText) {
       clearInterval(t);
-      alert(`You win, your time: ${time}s`);
       text = "You win! :)";
+      textDisplay.innerText = `You win, your time: ${time}s`;
     }
   });
   return t;
